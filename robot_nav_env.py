@@ -17,8 +17,8 @@ Coordinate system:
 Requirements:
   pip install gymnasium numpy matplotlib
 """
-import matplotlib
-matplotlib.use("macosx")
+# import matplotlib
+# matplotlib.use("macosx")
 import math
 import random
 import numpy as np
