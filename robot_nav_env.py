@@ -139,11 +139,16 @@ class RobotNavEnv(gym.Env):
 
         # --- Observation space ---
         # [9 depth sectors | 3 velocity | 4 goal one-hot]
-        low  = np.zeros(16, dtype=np.float32)
+        low = np.array(
+            [0.0] * NUM_SECTORS +
+            [-MAX_LIN_VEL, -MAX_LIN_VEL, -MAX_ANG_VEL] +
+            [0.0, 0.0, 0.0, 0.0],
+            dtype=np.float32,
+        )
         high = np.array(
-            [MAX_DEPTH] * NUM_SECTORS +       # depth sectors
-            [MAX_LIN_VEL, MAX_LIN_VEL, MAX_ANG_VEL] +  # velocity
-            [1.0, 1.0, 1.0, 1.0],            # goal one-hot
+            [MAX_DEPTH] * NUM_SECTORS +
+            [MAX_LIN_VEL, MAX_LIN_VEL, MAX_ANG_VEL] +
+            [1.0, 1.0, 1.0, 1.0],
             dtype=np.float32,
         )
         self.observation_space = spaces.Box(low=low, high=high, dtype=np.float32)
